@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,14 +16,18 @@ class UserController extends Controller
     }
 
     public function addUser(Request $request){
-        $name = $request->all()['formData']['name'];
-        User::create(['name' => $name, 'points' => 0]);
-        $users = User::all();
-        return redirect('/');
+        $data = $request->all();
+        User::create(['name' => $data['formData']['name'], 'age' => $data['formData']['age'], 'address' => $data['formData']['address'], 'points' => 0]);
+        //$users = User::all();
+        return response()->json(["form" => $data], 200);
     }
 
     public function deleteUser(User $user){
         $user->delete();
         return response("User deleted",200);
+    }
+
+    public function showUserInfoScreen(User $user){
+        return Inertia::render('userInfo', ['user' => $user]);
     }
 }

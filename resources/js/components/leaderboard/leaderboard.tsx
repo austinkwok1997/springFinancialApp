@@ -3,31 +3,31 @@ import { type User } from "@/types";
 import { useState, useEffect } from 'react';
 
 interface LeaderboardProps {
-    users: User[];
+    userList: User[];
+    setUserList: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
-export default function Leaderboard({ users }: LeaderboardProps) {
-    const [usersList, setUsersList] = useState(users);
+export default function Leaderboard({ userList, setUserList }: LeaderboardProps) {
 
     useEffect(() => {
-        const sortedList = usersList;
+        const sortedList = userList;
         sortedList.sort((a, b) => b.points - a.points);
-        setUsersList(sortedList);
+        setUserList(sortedList);
     }, [])
 
     const updateUser = (user: User) => {
-        let newList = [...usersList.filter(x => x.id !== user.id), user]
+        let newList = [...userList.filter(x => x.id !== user.id), user]
         newList.sort((a, b) => b.points - a.points);
-        setUsersList(newList)
+        setUserList(newList)
     }
 
     const deleteUser = (user: User) => {
-        setUsersList(usersList.filter(x => x.id !== user.id));
+        setUserList(userList.filter(x => x.id !== user.id));
     }
 
     return (
         <>
-            {usersList.map((user) => (
+            {userList.map((user) => (
                 <LeaderboardEntry key={user.id} user={user} updateUser={updateUser} deleteUser={deleteUser} />
             ))}
         </>

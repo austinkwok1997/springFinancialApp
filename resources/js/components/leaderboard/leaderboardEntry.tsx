@@ -59,7 +59,7 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
     return (
         <div>
             <Button variant="destructive" size="lg" onClick={handleDelete}>X</Button>
-            <span>{user.name}</span>
+            <a href={"/user/" + user.id}>{user.name}</a>
             <Button variant="default" size="lg" onClick={addPoint}>+</Button>
             <Button variant="destructive" size="lg" onClick={minusPoint}>-</Button>
             <span>{user.points}</span>

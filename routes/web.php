@@ -14,6 +14,8 @@ Route::get('/addUser', function() {
     return Inertia::render('addUserPage');
 });
 
+Route::get('/user/{user}', [UserController::class, 'showUserInfoScreen']);
+
 Route::post('/addUser', [UserController::class, 'addUser']);
 Route::delete('/deleteUser/{user}', [UserController::class, 'deleteUser']);
 

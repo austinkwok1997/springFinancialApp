@@ -35,4 +35,6 @@ export interface User {
     id: number;
     name: string;
     points: number;
+    age: number;
+    address: string;
 }
