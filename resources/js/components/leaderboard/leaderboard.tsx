@@ -1,13 +1,17 @@
-import { Button } from "@/components/ui/button"
+import LeaderboardEntry from "./leaderboardEntry";
+import { type User } from "@/types";
 
-export default function Leaderboard() {
+interface LeaderboardProps {
+    users: User[];
+}
+
+export default function Leaderboard({ users }: LeaderboardProps) {
+
     return (
         <>
-            <Button variant="destructive" size="lg">X</Button>
-            <span>Emma</span>
-            <Button variant="default" size="lg">+</Button>
-            <Button variant="destructive" size="lg">-</Button>
-            <span>25 points</span>
+            {users.map((user) => (
+                <LeaderboardEntry key={user.id} user={user} />
+            ))}
         </>
     )
 }

@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return Inertia::render('home');
+    $users = User::all();
+    return Inertia::render('home', ["users" => $users]);
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {

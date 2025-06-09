@@ -1,10 +1,14 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import Leaderboard from "@/components/leaderboard/leaderboard";
+import { type User } from "@/types";
 
-export default function Home() {
+interface HomeProps {
+    users: User[]
+}
+export default function Home({ users }: HomeProps) {
     return (
         <>
-            <Leaderboard />
+            <Leaderboard users={users} />
             <div>
                 <Button>+ Add User</Button>
             </div>
