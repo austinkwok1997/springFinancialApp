@@ -16,7 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/users', [UserController::class, 'getUsers']);
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
