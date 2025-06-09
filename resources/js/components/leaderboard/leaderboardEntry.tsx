@@ -4,10 +4,11 @@ import axios from 'axios';
 
 interface LeaderboardEntryProps {
     user: User;
-    updateUser: Function
+    updateUser: Function;
+    deleteUser: Function;
 }
 
-export default function LeaderboardEntry({ user, updateUser }: LeaderboardEntryProps) {
+export default function LeaderboardEntry({ user, updateUser, deleteUser }: LeaderboardEntryProps) {
 
     const addPoint = async () => {
         try {
@@ -43,9 +44,21 @@ export default function LeaderboardEntry({ user, updateUser }: LeaderboardEntryP
         }
     }
 
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete('/deleteUser/' + user.id)
+
+            if (response.status == 200) {
+                deleteUser(user);
+            }
+        } catch (error) {
+            console.error('Error removing point', error);
+        }
+    }
+
     return (
         <div>
-            <Button variant="destructive" size="lg">X</Button>
+            <Button variant="destructive" size="lg" onClick={handleDelete}>X</Button>
             <span>{user.name}</span>
             <Button variant="default" size="lg" onClick={addPoint}>+</Button>
             <Button variant="destructive" size="lg" onClick={minusPoint}>-</Button>

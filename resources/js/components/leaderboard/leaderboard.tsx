@@ -21,10 +21,14 @@ export default function Leaderboard({ users }: LeaderboardProps) {
         setUsersList(newList)
     }
 
+    const deleteUser = (user: User) => {
+        setUsersList(usersList.filter(x => x.id !== user.id));
+    }
+
     return (
         <>
             {usersList.map((user) => (
-                <LeaderboardEntry key={user.id} user={user} updateUser={updateUser} />
+                <LeaderboardEntry key={user.id} user={user} updateUser={updateUser} deleteUser={deleteUser} />
             ))}
         </>
     )

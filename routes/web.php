@@ -8,7 +8,14 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     $users = User::all();
     return Inertia::render('home', ["users" => $users]);
-})->name('home');
+});
+
+Route::get('/addUser', function() {
+    return Inertia::render('addUserPage');
+});
+
+Route::post('/addUser', [UserController::class, 'addUser']);
+Route::delete('/deleteUser/{user}', [UserController::class, 'deleteUser']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
