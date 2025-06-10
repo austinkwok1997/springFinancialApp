@@ -3,6 +3,8 @@ import { type User } from "@/types";
 import AddUserButton from "@/components/addUser/addUserButton";
 import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import axios from 'axios';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
@@ -22,11 +24,19 @@ export default function Home({ users }: HomeProps) {
         setFilterTerm(e.target.value);
     }
 
+    const handleInitialUsers = async () => {
+        axios.get('api/initialUsers')
+            .then(response => {
+                window.location.href = "/";
+            })
+    }
+
     return (
         <>
             <Input name="filter" type="text" onChange={handleChange} value={filterTerm} placeholder="Search" />
             <Leaderboard userList={userList} setUserList={setUserList} />
             <AddUserButton />
+            <Button onClick={handleInitialUsers}>Initial Users</Button>
         </>
     )
 }
