@@ -35,4 +35,22 @@ class UserController extends Controller
         $users = User::factory()->count(5)->create();
         return response()->json(["users" => User::all()], 200);
     }
+
+    public function getUsersByPoints() {
+        $users = User::all();
+        $pointsArray = [];
+        foreach($users as $user){
+            if(isset($pointsArray[$user->points])){
+                $pointsArray[$user->points]["names"][] = $user->name;
+                $pointsArray[$user->points]["ageTotal"] += $user->age;
+            }else{
+                $pointsArray[$user->points] = array("names"=> array($user->name), "ageTotal" => $user->age);
+            }
+        }
+        foreach($pointsArray as $key => $value){
+            $pointsArray[$key]["average_age"] = $value["ageTotal"] / sizeof($value["names"]);
+            unset($pointsArray[$key]["ageTotal"]);
+        }
+        return response()->json($pointsArray, 200);
+    }
 }

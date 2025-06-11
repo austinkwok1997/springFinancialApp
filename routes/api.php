@@ -11,3 +11,5 @@ Route::get('/user', function (Request $request) {
 Route::put('/points/{user}', [UserController::class, 'updatePoints']);
 
 Route::get('/initialUsers', [UserController::class, 'initialUsers']);
+
+Route::get('/usersByPoints', [UserController::class, 'getUsersByPoints']);
