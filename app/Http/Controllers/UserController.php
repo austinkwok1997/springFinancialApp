@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Jobs\QrCodeAddressJob;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -18,8 +19,8 @@ class UserController extends Controller
     public function addUser(Request $request){
         $data = $request->all();
         User::create(['name' => $data['formData']['name'], 'age' => $data['formData']['age'], 'address' => $data['formData']['address'], 'points' => 0]);
-        //$users = User::all();
-        return response()->json(["form" => $data], 200);
+        QrCodeAddressJob::dispatch($data['formData']['address']);
+        return response("User created", 200);
     }
 
     public function deleteUser(User $user){
