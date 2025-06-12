@@ -4,14 +4,26 @@ import { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/table';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 interface LeaderboardProps {
-    userList: User[];
-    setUserList: React.Dispatch<React.SetStateAction<User[]>>;
+    users: User[];
 }
 
-export default function Leaderboard({ userList, setUserList }: LeaderboardProps) {
+export default function Leaderboard({ users }: LeaderboardProps) {
     const [sortByPoints, setSortByPoints] = useState(true);
+    const [filterTerm, setFilterTerm] = useState("");
+    const [userList, setUserList] = useState(users);
+
+    useEffect(() => {
+        setUserList(users.filter(x => x.name.includes(filterTerm)))
+    }, [filterTerm])
+
+    const handleChange = (e: InputEvent) => {
+        setFilterTerm(e.target.value);
+    }
 
     const updateUser = (user: User) => {
         let newList = [...userList];
@@ -45,6 +57,7 @@ export default function Leaderboard({ userList, setUserList }: LeaderboardProps)
     return (
         <Row className="justify-content-md-center">
             <Col md="8">
+                <Form.Control name="filter" type="text" onChange={handleChange} value={filterTerm} placeholder="Search" />
                 <div>
                     <input type="checkbox" checked={!sortByPoints} onChange={() => handleSort(false)} />
                     <label>Sort by Name</label>

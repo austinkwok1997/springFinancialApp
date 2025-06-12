@@ -14,16 +14,6 @@ interface HomeProps {
 }
 
 export default function Home({ users }: HomeProps) {
-    const [userList, setUserList] = useState(users);
-    const [filterTerm, setFilterTerm] = useState("");
-
-    useEffect(() => {
-        setUserList(users.filter(x => x.name.includes(filterTerm)))
-    }, [filterTerm])
-
-    const handleChange = (e: InputEvent) => {
-        setFilterTerm(e.target.value);
-    }
 
     const handleInitialUsers = async () => {
         axios.get('api/initialUsers')
@@ -34,8 +24,7 @@ export default function Home({ users }: HomeProps) {
 
     return (
         <Container>
-            <Input name="filter" type="text" onChange={handleChange} value={filterTerm} placeholder="Search" />
-            <Leaderboard userList={userList} setUserList={setUserList} />
+            <Leaderboard users={users} />
             <AddUserButton />
             <Button onClick={handleInitialUsers}>Initial Users</Button>
         </Container>
