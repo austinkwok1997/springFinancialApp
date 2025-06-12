@@ -1,25 +1,25 @@
-# Laravel + React Starter Kit
+# Spring Financial App
 
-## Introduction
+## How to run
 
-Our React starter kit provides a robust, modern starting point for building Laravel applications with a React frontend using [Inertia](https://inertiajs.com).
+1. Set up DB ffrom .env file. (For this project I used a mySQL db)
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=springfinancialapp
+DB_USERNAME=root
+DB_PASSWORD=[password]
+```
 
-Inertia allows you to build modern, single-page React applications using classic server-side routing and controllers. This lets you enjoy the frontend power of React combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
+2. run `php artisan migrate` to create tables needed for app
 
-This React starter kit utilizes React 19, TypeScript, Tailwind, and the [shadcn/ui](https://ui.shadcn.com) and [radix-ui](https://www.radix-ui.com) component libraries.
+3. run `npm i` and then `npm run dev` in one terminal
 
-## Official Documentation
+4. run `php artisan serve` in another terminal
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+5. Site should be running on localhost:8000
 
-## Contributing
+6. run `php artisan queue:work` to run jobs sent to queue
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## License
-
-The Laravel + React starter kit is open-sourced software licensed under the MIT license.
+7. run `php artisan schedule:run` to run scheduled jobs
