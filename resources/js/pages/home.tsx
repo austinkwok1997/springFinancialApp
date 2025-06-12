@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
@@ -32,11 +33,11 @@ export default function Home({ users }: HomeProps) {
     }
 
     return (
-        <>
+        <Container>
             <Input name="filter" type="text" onChange={handleChange} value={filterTerm} placeholder="Search" />
             <Leaderboard userList={userList} setUserList={setUserList} />
             <AddUserButton />
             <Button onClick={handleInitialUsers}>Initial Users</Button>
-        </>
+        </Container>
     )
 }

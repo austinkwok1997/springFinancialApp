@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import Button from "react-bootstrap/Button";
 import { type User } from "@/types";
 import axios from 'axios';
 
@@ -57,12 +57,12 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
     }
 
     return (
-        <div>
-            <Button variant="destructive" size="lg" onClick={handleDelete}>X</Button>
-            <a href={"/user/" + user.id}>{user.name}</a>
-            <Button variant="default" size="lg" onClick={addPoint}>+</Button>
-            <Button variant="destructive" size="lg" onClick={minusPoint}>-</Button>
-            <span>{user.points}</span>
-        </div>
+        <tr >
+            <td className="align-middle"><Button variant="danger" style={{ padding: '5px 28px', fontWeight: 700 }} size="lg" onClick={handleDelete}>X</Button></td>
+            <td className="align-middle text-center"><a className="align-middle" style={{ fontSize: 18, textDecoration: 'none', fontWeight: 800 }} href={"/user/" + user.id}><h3>{user.name}</h3></a></td>
+            <td className="align-middle"><Button variant="success" style={{ padding: '5px 28px', fontWeight: 800 }} size="lg" onClick={addPoint}>+</Button></td>
+            <td className="align-middle"><Button variant="danger" style={{ padding: '5px 32px', fontWeight: 800 }} size="lg" onClick={minusPoint}>-</Button></td>
+            <td className="align-middle"><h5 style={{ marginLeft: "60px" }}>{user.points} points</h5></td>
+        </tr>
     )
 }

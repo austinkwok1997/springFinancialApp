@@ -1,6 +1,9 @@
 import LeaderboardEntry from "./leaderboardEntry";
 import { type User } from "@/types";
 import { useState, useEffect } from 'react';
+import Table from 'react-bootstrap/table';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 interface LeaderboardProps {
     userList: User[];
@@ -40,16 +43,22 @@ export default function Leaderboard({ userList, setUserList }: LeaderboardProps)
     }
 
     return (
-        <>
-            <div>
-                <input type="checkbox" checked={!sortByPoints} onChange={() => handleSort(false)} />
-                <label>Sort by Name</label>
-                <input type="checkbox" checked={sortByPoints} onChange={() => handleSort(true)} />
-                <label>Sort by Points</label>
-            </div>
-            {userList.map((user) => (
-                <LeaderboardEntry key={user.id} user={user} updateUser={updateUser} deleteUser={deleteUser} />
-            ))}
-        </>
+        <Row className="justify-content-md-center">
+            <Col md="8">
+                <div>
+                    <input type="checkbox" checked={!sortByPoints} onChange={() => handleSort(false)} />
+                    <label>Sort by Name</label>
+                    <input type="checkbox" checked={sortByPoints} onChange={() => handleSort(true)} />
+                    <label>Sort by Points</label>
+                </div>
+                <Table borderless>
+                    <tbody>
+                        {userList.map((user) => (
+                            <LeaderboardEntry key={user.id} user={user} updateUser={updateUser} deleteUser={deleteUser} />
+                        ))}
+                    </tbody>
+                </Table>
+            </Col>
+        </Row>
     )
 }
