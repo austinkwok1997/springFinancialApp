@@ -12,7 +12,7 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
 
     const addPoint = () => {
         try {
-            axios.put('/api/points/' + user.id, {
+            axios.put('/points/' + user.id, {
                 body: {
                     points: user.points + 1
                 }
@@ -30,7 +30,7 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
 
     const minusPoint = async () => {
         try {
-            axios.put('/api/points/' + user.id, {
+            axios.put('/points/' + user.id, {
                 body: {
                     points: user.points - 1
                 }

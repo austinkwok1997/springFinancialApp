@@ -11,6 +11,9 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function updatePoints(User $user, Request $request){
+        $request->validate([
+            'body.points' => 'required'
+        ]);
         $content = $request->all();
         $user->update(['points' => $content['body']['points']]);
         return response()->json(["user" => $user], 200);
@@ -22,7 +25,7 @@ class UserController extends Controller
             'formData.age' => ['required', 'min:0'],
             'formData.address' => 'required'
         ]);
-        
+
         $data = $request->all();
         User::create(['name' => $data['formData']['name'], 'age' => $data['formData']['age'], 'address' => $data['formData']['address'], 'points' => 0]);
         QrCodeAddressJob::dispatch($data['formData']['address']);
