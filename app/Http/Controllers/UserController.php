@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function addUser(Request $request){
-        $request->$validate([
+        $request->validate([
             'formData.name' => 'required',
             'formData.age' => ['required', 'min:0'],
             'formData.address' => 'required'

@@ -7,6 +7,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
+type FormEvent = React.FormEvent<HTMLFormElement>;
 
 export default function AddUserButton() {
     const [show, setShow] = useState(false);
@@ -15,7 +16,8 @@ export default function AddUserButton() {
         age: 0,
         address: ""
     });
-    const handleSubmit = () => {
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
 
         axios.post('/addUser', {
             formData
