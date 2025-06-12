@@ -37,10 +37,6 @@ class UserController extends Controller
         return response("User deleted",200);
     }
 
-    public function showUserInfoScreen(User $user){
-        return Inertia::render('userInfo', ['user' => $user]);
-    }
-
     public function initialUsers(){
         $users = User::factory()->count(5)->create();
         return response()->json(["users" => User::all()], 200);
