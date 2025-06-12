@@ -8,6 +8,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/initialUsers', [UserController::class, 'initialUsers']);
+// Create 5 initial users for app
+Route::post('/initialUsers', [UserController::class, 'initialUsers']);
 
+
+// Returns the users info grouped by score and include the average age of the users
 Route::get('/usersByPoints', [UserController::class, 'getUsersByPoints']);

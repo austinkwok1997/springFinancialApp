@@ -35,10 +35,18 @@ export default function AddUserButton() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const handleInitialUsers = async () => {
+        axios.post('api/initialUsers')
+            .then(response => {
+                window.location.href = "/";
+            })
+    }
+
     return (
         <Row>
             <Col md={11}>
-                <Button className="float-end" size="lg" onClick={handleShow}>+ Add User</Button>
+                <Button variant="secondary" className="float-end" size="lg" onClick={handleInitialUsers}>Initial Users</Button>
+                <Button variant="primary" className="float-end" size="lg" onClick={handleShow} style={{ marginRight: '14px' }}>+ Add User</Button>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add User</Modal.Title>

@@ -14,19 +14,10 @@ interface HomeProps {
 }
 
 export default function Home({ users }: HomeProps) {
-
-    const handleInitialUsers = async () => {
-        axios.get('api/initialUsers')
-            .then(response => {
-                window.location.href = "/";
-            })
-    }
-
     return (
         <Container>
             <Leaderboard users={users} />
             <AddUserButton />
-            <Button onClick={handleInitialUsers}>Initial Users</Button>
         </Container>
     )
 }
