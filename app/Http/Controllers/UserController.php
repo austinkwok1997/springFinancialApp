@@ -17,6 +17,12 @@ class UserController extends Controller
     }
 
     public function addUser(Request $request){
+        $request->$validate([
+            'formData.name' => 'required',
+            'formData.age' => ['required', 'min:0'],
+            'formData.address' => 'required'
+        ]);
+        
         $data = $request->all();
         User::create(['name' => $data['formData']['name'], 'age' => $data['formData']['age'], 'address' => $data['formData']['address'], 'points' => 0]);
         QrCodeAddressJob::dispatch($data['formData']['address']);
