@@ -55,11 +55,13 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
 
     const handleDelete = async () => {
         try {
-            const response = await axios.delete('/deleteUser/' + user.id)
-
-            if (response.status == 200) {
-                deleteUser(user);
-            }
+            axios.delete('/deleteUser/' + user.id)
+                .then(response => {
+                    if (response.status !== 200) {
+                        console.log("Error deleting user");
+                    }
+                })
+            deleteUser(user);
         } catch (error) {
             console.error('Error removing point', error);
         }

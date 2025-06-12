@@ -58,13 +58,14 @@ export default function Leaderboard({ users }: LeaderboardProps) {
         <Row className="justify-content-md-center">
             <Col md="8">
                 <Form.Control name="filter" type="text" onChange={handleChange} value={filterTerm} placeholder="Search" />
-                <div>
-                    <input type="checkbox" checked={!sortByPoints} onChange={() => handleSort(false)} />
-                    <label>Sort by Name</label>
-                    <input type="checkbox" checked={sortByPoints} onChange={() => handleSort(true)} />
-                    <label>Sort by Points</label>
-                </div>
                 <Table borderless>
+                    <thead>
+                        <th></th>
+                        <th className="d-flex justify-content-center"><Form.Check type="switch" label="Sort By Name" checked={!sortByPoints} onChange={() => handleSort(false)} /></th>
+                        <th></th>
+                        <th></th>
+                        <th className="d-flex justify-content-center"><Form.Check type="switch" label="Sort By Points" checked={sortByPoints} onChange={() => handleSort(true)} /></th>
+                    </thead>
                     <tbody>
                         {userList.map((user) => (
                             <LeaderboardEntry key={user.id} user={user} updateUser={updateUser} deleteUser={deleteUser} />
