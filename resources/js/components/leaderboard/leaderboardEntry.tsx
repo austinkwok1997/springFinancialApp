@@ -10,19 +10,19 @@ interface LeaderboardEntryProps {
 
 export default function LeaderboardEntry({ user, updateUser, deleteUser }: LeaderboardEntryProps) {
 
-    const addPoint = async () => {
+    const addPoint = () => {
         try {
-            const response = await axios.put('/api/points/' + user.id, {
+            axios.put('/api/points/' + user.id, {
                 body: {
                     points: user.points + 1
                 }
+            }).then(response => {
+                if (response.status !== 200) {
+                    console.error('Error adding point');
+                }
             });
-            if (response.status == 200) {
-                user.points = user.points + 1;
-                updateUser(user);
-            } else {
-                console.error('Error adding point');
-            }
+            user.points = user.points + 1;
+            updateUser(user);
         } catch (error) {
             console.error('Error adding point', error);
         }
@@ -30,15 +30,17 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
 
     const minusPoint = async () => {
         try {
-            const response = await axios.put('/api/points/' + user.id, {
+            axios.put('/api/points/' + user.id, {
                 body: {
                     points: user.points - 1
                 }
+            }).then(response => {
+                if (response.status !== 200) {
+                    console.error('Error adding point');
+                }
             })
-            if (response.status == 200) {
-                user.points = user.points - 1;
-                updateUser(user);
-            }
+            user.points = user.points - 1;
+            updateUser(user);
         } catch (error) {
             console.error('Error removing point', error);
         }
