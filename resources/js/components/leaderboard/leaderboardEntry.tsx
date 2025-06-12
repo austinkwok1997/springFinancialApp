@@ -3,6 +3,7 @@ import { type User } from "@/types";
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 interface LeaderboardEntryProps {
     user: User;
@@ -73,11 +74,18 @@ export default function LeaderboardEntry({ user, updateUser, deleteUser }: Leade
                 <td className="align-middle"><Button variant="danger" style={{ padding: '5px 32px', fontWeight: 800 }} size="lg" onClick={minusPoint}>-</Button></td>
                 <td className="align-middle"><h5 style={{ marginLeft: "60px" }}>{user.points} points</h5></td>
             </tr>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>{user.name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                    <ListGroup>
+                        <ListGroup.Item>Name: {user.name}</ListGroup.Item>
+                        <ListGroup.Item>Age: {user.age}</ListGroup.Item>
+                        <ListGroup.Item>Points: {user.points}</ListGroup.Item>
+                        <ListGroup.Item>Address: {user.address}</ListGroup.Item>
+                    </ListGroup>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
