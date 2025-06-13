@@ -61,10 +61,10 @@ export default function Leaderboard({ users }: LeaderboardProps) {
                 <Table borderless>
                     <thead>
                         <th></th>
-                        <th className="d-flex justify-content-center"><Form.Check type="switch" label="Sort By Name" checked={!sortByPoints} onChange={() => handleSort(false)} /></th>
+                        <th className="d-flex justify-content-center"><Form.Check id="sort-by-name-switch" type="switch" label="Sort By Name" checked={!sortByPoints} onChange={() => handleSort(false)} /></th>
                         <th></th>
                         <th></th>
-                        <th className="d-flex justify-content-center"><Form.Check type="switch" label="Sort By Points" checked={sortByPoints} onChange={() => handleSort(true)} /></th>
+                        <th className="d-flex justify-content-center"><Form.Check id="sort-by-points-switch" type="switch" label="Sort By Points" checked={sortByPoints} onChange={() => handleSort(true)} /></th>
                     </thead>
                     <tbody>
                         {userList.map((user) => (

@@ -54,16 +54,16 @@ export default function AddUserButton() {
                     <Modal.Body>
                         <Form id="userForm" onSubmit={handleSubmit}>
                             <Form.Group>
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control required type="text" name="name" placeholder="Enter Name" value={formData.name} onChange={handleInput} />
+                                <Form.Label htmlFor="name">Name</Form.Label>
+                                <Form.Control id="name" required type="text" name="name" placeholder="Enter Name" value={formData.name} onChange={handleInput} />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Age</Form.Label>
-                                <Form.Control required type="number" name="age" placeholder="Enter Age" value={formData.age} onChange={handleInput} min="0" />
+                                <Form.Label htmlFor="age">Age</Form.Label>
+                                <Form.Control id="age" required type="number" name="age" placeholder="Enter Age" value={formData.age} onChange={handleInput} min="0" />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Address</Form.Label>
-                                <Form.Control required type="text" name="address" placeholder="Enter Address" value={formData.address} onChange={handleInput} />
+                                <Form.Label htmlFor="address">Address</Form.Label>
+                                <Form.Control id="address" required type="text" name="address" placeholder="Enter Address" value={formData.address} onChange={handleInput} />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
@@ -71,7 +71,7 @@ export default function AddUserButton() {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button type="submit" form="userForm" variant="primary" >
+                        <Button id="submit" type="submit" form="userForm" variant="primary" >
                             Save Changes
                         </Button>
                     </Modal.Footer>
