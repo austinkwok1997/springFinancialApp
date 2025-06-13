@@ -32,6 +32,7 @@ DB_PASSWORD=[password]
 
 ## Screenshot
 ![alt text](image.png)
+![alt text](image-1.png)
 
 ## API Endpoints
 
