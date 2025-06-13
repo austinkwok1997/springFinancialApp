@@ -24,6 +24,12 @@ DB_PASSWORD=[password]
 
 7. run `php artisan schedule:run` to run scheduled jobs
 
+8. run `php artisan app:reset-scores` to run reset scores job
+
+9. run `npm test` to run React tests
+
+10. run `./vendor/bin/pest` to run laravel tests 
+
 ## Screenshot
 ![alt text](image.png)
 
