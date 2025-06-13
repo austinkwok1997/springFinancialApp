@@ -23,3 +23,29 @@ DB_PASSWORD=[password]
 6. run `php artisan queue:work` to run jobs sent to queue
 
 7. run `php artisan schedule:run` to run scheduled jobs
+
+## Screenshot
+![alt text](image.png)
+
+## API Endpoints
+
+- **GET /**  
+  Renders the home page and returns a list of all users.
+
+- **PUT /points/{user}**  
+  Updates the points for a specific user.
+
+- **POST /addUser**  
+  Adds a new user.
+
+- **DELETE /deleteUser/{user}**  
+  Deletes a specific user.
+
+- **GET /dashboard**  
+  Renders the dashboard page (requires authentication and email verification).
+
+- **POST /api/initialUsers**  
+  Creates 5 initial users for the application.
+
+- **GET /api/usersByPoints**  
+  Returns user information grouped by score and includes the average age of the users.
