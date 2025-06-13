@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Winner;
 use Illuminate\Support\Facades\Log;
@@ -12,12 +13,15 @@ class RecordWinnerJob implements ShouldQueue
 {
     use Queueable;
 
+    protected $winningTime;
+
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct($winningTime)
     {
-        Log::info('hello');
+        $this->winningTime = $winningTime;
+        Log::Info($this->winningTime);
     }
 
     /**
@@ -43,7 +47,7 @@ class RecordWinnerJob implements ShouldQueue
             Log::info($maxValue);
             Log::info($countMax);
             if($countMax === 1){
-                Winner::create(["user_id" => $userId, "winning_score" => $maxValue]);
+                Winner::create(["user_id" => $userId, "winning_score" => $maxValue, "winning_time" => $this->winningTime]);
             }
         }
     }

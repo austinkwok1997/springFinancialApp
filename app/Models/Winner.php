@@ -8,6 +8,7 @@ class Winner extends Model
 {
     protected $fillable = [
         'user_id',
-        'winning_score'
+        'winning_score',
+        'winning_time'
     ];
 }
