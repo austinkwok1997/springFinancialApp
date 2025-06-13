@@ -1,5 +1,8 @@
 # Spring Financial App
 
+Node version: 22
+Laravel version: 12
+
 ## How to run
 
 1. Set up DB ffrom .env file. (For this project I used a mySQL db)
@@ -30,7 +33,7 @@ DB_PASSWORD=[password]
 
 10. run `./vendor/bin/pest` to run laravel tests 
 
-## Screenshot
+## Screenshots
 ![alt text](image.png)
 ![alt text](image-1.png)
 
